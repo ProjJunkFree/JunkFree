@@ -9,8 +9,8 @@ import WelcomeScreen from "./components/WelcomeScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
 import ProfileScreen from "./components/ProfileScreen";
-import { StyleSheet, View, Text} from 'react-native';
-import LoginScreen from './screens/LoginScreen';
+import { StyleSheet, View, Text } from "react-native";
+import LoginScreen from "./components/LoginScreen";
 
 export default function App() {
   return (
@@ -22,12 +22,6 @@ export default function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
-      <View>
-      <LoginScreen />
-    </View>
     </NavigationContainer>
-    
   );
 }
-
-
