@@ -10,7 +10,9 @@ import chevronLeft from "../assets/icons/chevron-left.png";
 import chevronRight from "../assets/icons/chevron-right.png";
 import email from "../assets/icons/email_outline.png";
 import locationGreen from "../assets/icons/locationHome.png";
+import filterOutline from "../assets/icons/filter_outline.png";
 export default {
+  filterOutline,
   heart,
   menu,
   locationGreen,

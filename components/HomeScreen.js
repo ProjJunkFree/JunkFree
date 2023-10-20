@@ -14,6 +14,7 @@ import {
 
 import { COLORS, icons, images, SIZES } from "../constants";
 import styles from "./HomeStyle/homescreen.style";
+import HeroSection from "./HeroSection/HeroSection";
 
 function HomeScreen({ navigation }) {
   const [searchCity, setSearchCity] = React.useState("");
@@ -29,7 +30,6 @@ function HomeScreen({ navigation }) {
         <View
           style={{
             flex: 1,
-            backgroundColor: COLORS.red,
             padding: SIZES.medium,
           }}
         >
@@ -49,7 +49,7 @@ function HomeScreen({ navigation }) {
             </TouchableOpacity>
           </View>
           {/* Post component */}
-
+          <HeroSection />
           <Text>Home Screen</Text>
           <Button title="Go to Profile" onPress={handleProfile} />
         </View>
