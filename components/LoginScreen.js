@@ -10,16 +10,18 @@ import {
 import Logo from "../assets/images/junk.png";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
+import {useForm, Controller} from "react-hook-form";
 
 function LoginScreen({ navigation }) {
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  // const [email, setEmail] = React.useState('');
+  // const [password, setPassword] = React.useState('');
 
-  const onSignInPressed = () => {
-    if (email === "user@example.com" && password === "password") {
-      console.warn("HI nako");
-      navigation.navigate("Home");
-    }
+  const{control, handleSubmit, formState: {errors},} = useForm();
+
+
+  const onSignInPressed = data => {
+    console.log(data);
+      navigation.navigate("Home");  
   };
 
   // Implement your login logic here
@@ -34,22 +36,18 @@ function LoginScreen({ navigation }) {
   // }
 
   const onForgotPasswordPressed = () => {
-    console.warn("onForgotPasswoord");
+    navigation.navigate("Forgot Password");
   };
 
-  const onSignInFacebook = () => {
-    console.warn("Your Facebook account has been logged in");
-  };
 
   const onSignInGoogle = () => {
     console.warn("Your Google account has been logged in");
+    navigation.navigate("Home");
   };
 
-  const onSignInApple = () => {
-    console.warn("Your Apple account has beenLogged in");
-  };
 
   const onSignUpPressed = () => {
+    navigation.navigate("Signup");
     console.warn("onSignUp");
   };
 
@@ -61,15 +59,22 @@ function LoginScreen({ navigation }) {
         <Text style={styles.text2}>Log in with one of the following.</Text>
 
         <Text>Email</Text>
-        <CustomInput placeholder="Email" value={email} setValue={setEmail} />
+        <CustomInput 
+          name="Email"
+          placeholder="Email" 
+          control={control}
+          rules={{required: 'Email is required'}}
+        />
 
         <Text>Password</Text>
         <CustomInput
+          name="Password"
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
-          secureTextEntry={true}
+          secureTextEntry
+          control={control}
+          rules={{required: 'Password is required'}}
         />
+
 
         <CustomButton
           text="Forgot password?"
@@ -77,15 +82,8 @@ function LoginScreen({ navigation }) {
           type="TERTIARY"
         />
 
-        <CustomButton text="Login" onPress={onSignInPressed} />
+        <CustomButton text="Login" onPress={handleSubmit(onSignInPressed)} />
         <Text style={styles.text}>OR</Text>
-
-        <CustomButton
-          text="Sign In with Facebook"
-          onPress={onSignInFacebook}
-          bgColor="#0084FF"
-          fgColor="white"
-        />
 
         <CustomButton
           text="Sign In with Google"
@@ -93,23 +91,19 @@ function LoginScreen({ navigation }) {
           bgColor="white"
           fgColor="black"
         />
-        <CustomButton
-          text="Sign In with Apple"
-          onPress={onSignInApple}
-          bgColor="black"
-          fgColor="white"
-        />
 
         <CustomButton
           text="Don't have an account? Create one"
           title="Signup"
-          onPress={() => navigation.navigate("Signup")}
+          onPress={onSignUpPressed}
           type="TERTIARY"
         />
       </View>
     </ScrollView>
   );
 }
+import { Form } from "react-hook-form";
+import { TextInput } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   root: {
