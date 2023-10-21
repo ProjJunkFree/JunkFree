@@ -1,6 +1,6 @@
 import React from "react";
 import { Font } from "expo";
-
+import { useState } from "react";
 import {
   View,
   SafeAreaView,
@@ -15,9 +15,16 @@ import {
 import { COLORS, icons, images, SIZES } from "../constants";
 import styles from "./HomeStyle/homescreen.style";
 import HeroSection from "./HeroSection/HeroSection";
+import MainContent from "./MainContent/MainContent";
 
 function HomeScreen({ navigation }) {
-  const [searchCity, setSearchCity] = React.useState("");
+  const [searchCity, setSearchCity] = useState("");
+  const [isFilterApplied, setFilterApplied] = useState(false);
+
+  // Function to handle the filter toggle
+  const toggleFilter = () => {
+    setFilterApplied(!isFilterApplied);
+  };
 
   const handleProfile = () => {
     // Navigate to the Profile screen
@@ -25,14 +32,9 @@ function HomeScreen({ navigation }) {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.backgroundColor }}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View
-          style={{
-            flex: 1,
-            padding: SIZES.medium,
-          }}
-        >
+        <View style={styles.topHeaderContainer}>
           <View style={styles.searchContainer}>
             <Image source={images.junkFreeLogo} style={styles.mainLogoSize} />
             <View style={styles.searchWrapper}>
@@ -44,22 +46,26 @@ function HomeScreen({ navigation }) {
               />
               <Image source={icons.locationGreen} style={styles.absoluteImg} />
             </View>
-            <TouchableOpacity>
-              <Image source={icons.email} style={styles.emailIcon} />
+            <TouchableOpacity onPress={toggleFilter}>
+              <Image
+                source={isFilterApplied ? icons.emailApplied : icons.email}
+                style={styles.emailIcon}
+              />
             </TouchableOpacity>
           </View>
-          {/* Post component */}
+          {/* Hero Content */}
           <HeroSection />
-          <Text>Home Screen</Text>
-          <Button title="Go to Profile" onPress={handleProfile} />
+          {/* Main Content */}
+          <MainContent />
+          <MainContent />
+
+          <View>
+            <Button title="Go to Profile" onPress={handleProfile} />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-HomeScreen.navigationOptions = {
-  headerShown: false,
-};
 
 export default HomeScreen;

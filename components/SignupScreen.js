@@ -124,7 +124,6 @@ function SignupScreen({ navigation }) {
           bgColor="white"
           fgColor="black"
         />
-        {/* <Button title="Signup" onPress={handleSignup} /> */}
       </View>
     </ScrollView>
   );

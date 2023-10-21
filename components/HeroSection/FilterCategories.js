@@ -13,16 +13,46 @@ import {
 } from "react-native";
 import { COLORS, SIZES, icons, images } from "../../constants";
 import styles from "./herosection.style";
+import LabelOptions from "./LabelOptions";
 const categories = ["Appliances", "Books", "Electronics", "Furniture", "Toys"];
+const labelOptions = ["Available", "Seeking"];
 const FilterCategories = () => {
   const [post, setPost] = React.useState("");
+  const [isFilterApplied, setFilterApplied] = useState(false);
 
+  // Function to handle the filter toggle
+  const toggleFilter = () => {
+    setFilterApplied(!isFilterApplied);
+  };
   const [activeCategory, setActiveCategory] = useState("Appliances");
 
   return (
-    <View style={{ marginTop: SIZES.medium }}>
-      <Image source={icons.filterOutline} style={styles.filterSize} />
-      <Text>Popular Categories</Text>
+    <View
+      style={{
+        marginTop: SIZES.xSmall,
+        backgroundColor: COLORS.red,
+        padding: 20,
+        backgroundColor: COLORS.lightWhite,
+      }}
+    >
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <TouchableOpacity onPress={toggleFilter}>
+          <Image
+            source={isFilterApplied ? icons.filterApplied : icons.filterOutline}
+            style={styles.filterSize}
+          />
+        </TouchableOpacity>
+        <LabelOptions />
+      </View>
+
+      <Text style={styles.headerTitle}>Popular Categories</Text>
       <FlatList
         style={{ marginTop: SIZES.small }}
         data={categories}

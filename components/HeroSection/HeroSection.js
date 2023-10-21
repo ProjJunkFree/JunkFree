@@ -19,8 +19,7 @@ const HeroSection = () => {
     <View
       style={{
         flex: 1,
-        padding: SIZES.medium,
-        marginTop: SIZES.medium,
+        marginTop: SIZES.xSmall,
       }}
     >
       <View style={styles.heroSectionContainer}>

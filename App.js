@@ -5,7 +5,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 import WelcomeScreen from "./components/WelcomeScreen";
-// import LoginScreen from "./components/LoginScreen";
 import SignupScreen from "./components/SignupScreen";
 import HomeScreen from "./components/HomeScreen";
 import ProfileScreen from "./components/ProfileScreen";
@@ -14,6 +13,7 @@ import LoginScreen from "./components/LoginScreen";
 import ForgotPasswordScreen from "./components/ForgotPasswordScreen/ForgotPasswordScreen";
 import ResetPasswordScreen from "./components/ForgotPasswordScreen/ResetPasswordScreen";
 import ConfirmationCodeScreenScreen from "./components/ForgotPasswordScreen/ConfirmationCodeScreen";
+
 
 export default function App() {
   return (
@@ -27,6 +27,7 @@ export default function App() {
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="BottomTab" component={BottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
