@@ -11,12 +11,13 @@ import {
 import Logo from "../assets/images/junk.png";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[A-Za-z]+)*$/
+const EMAIL_REGEX =
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[A-Za-z]+)*$/;
 
 function SignupScreen({ navigation }) {
-   const {control, handleSubmit} = useForm();
+  const { control, handleSubmit } = useForm();
   // const {Fname, setFirstName} = useForm();
   // const {Lname, setLastName} = useForm();
   // const {Email, setEmail} = useForm();
@@ -29,15 +30,13 @@ function SignupScreen({ navigation }) {
     //   setPasswordError("Must be at least 8 characters.");
     // } else {
     //   setPasswordError(""); // Reset the error message if the password is valid
-     navigation.navigate("Home");
+    navigation.navigate("Home");
     // }
   };
 
   const { height } = useWindowDimensions();
 
   const onSignInGoogle = () => {
-    console.warn("Your Google account has been Signed in");
-    // Direct to the "Home" screen when signing in with Google
     navigation.navigate("Home");
   };
 
@@ -52,7 +51,7 @@ function SignupScreen({ navigation }) {
         <CustomInput
           name="firstname"
           control={control}
-          rules={{required: 'First name is required'}}
+          rules={{ required: "First name is required" }}
         />
 
         <Text>LastName</Text>
@@ -60,7 +59,7 @@ function SignupScreen({ navigation }) {
           name="lastname"
           control={control}
           placeholder="Last name"
-          rules={{required: 'Last name is required'}}
+          rules={{ required: "Last name is required" }}
         />
 
         <Text>Email</Text>
@@ -68,7 +67,10 @@ function SignupScreen({ navigation }) {
           name="email"
           control={control}
           placeholder="Email"
-          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}, required: 'Email is required'}}
+          rules={{
+            pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+            required: "Email is required",
+          }}
         />
 
         <Text>UserName</Text>
@@ -77,19 +79,17 @@ function SignupScreen({ navigation }) {
           control={control}
           placeholder="Username"
           rules={{
-            required: 'Username is required', 
+            required: "Username is required",
             minLength: {
-              value: 3, 
-              message: 'Username should be at least 6 characters long',
+              value: 3,
+              message: "Username should be at least 6 characters long",
             },
-            
+
             maxLength: {
-              value: 24, 
-              message: 'Username should be max 24 characters only',
+              value: 24,
+              message: "Username should be max 24 characters only",
             },
-            
- 
-        }}
+          }}
         />
 
         <Text>Password</Text>
@@ -99,17 +99,16 @@ function SignupScreen({ navigation }) {
           placeholder="Password"
           secureTextEntry
           rules={{
-            required: 'Password is required', 
+            required: "Password is required",
             minLength: {
-              value: 8, 
-              message: 'Password should be at least 6 characters long',
+              value: 8,
+              message: "Password should be at least 6 characters long",
             },
             maxLength: {
-              value: 16, 
-              message: 'Password should be max of 18 characters only',
+              value: 16,
+              message: "Password should be max of 18 characters only",
             },
-          
-        }}
+          }}
         />
         {/* {passwordError ? (
           <Text style={styles.errorText}>{passwordError}</Text>
