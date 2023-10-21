@@ -11,22 +11,26 @@ import {
 import Logo from "../assets/images/junk.png";
 import CustomInput from "../components/CustomInput";
 import CustomButton from "../components/CustomButton";
+import {useForm} from "react-hook-form";
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+(?:\.[A-Za-z]+)*$/
 
 function SignupScreen({ navigation }) {
-  const [Fname, setFirstName] = React.useState("");
-  const [Lname, setLastName] = React.useState("");
-  const [Email, setEmail] = React.useState("");
-  const [Uname, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState("");
+   const {control, handleSubmit} = useForm();
+  // const {Fname, setFirstName} = useForm();
+  // const {Lname, setLastName} = useForm();
+  // const {Email, setEmail} = useForm();
+  // const {Uname, setUsername} = useForm();
+  // const {password, setPassword} = useForm();
+  // const {passwordError, setPasswordError} = useForm();
 
   const handleSignup = () => {
-    if (password.length < 8) {
-      setPasswordError("Must be at least 8 characters.");
-    } else {
-      setPasswordError(""); // Reset the error message if the password is valid
-      navigation.navigate("Home");
-    }
+    // if (password.length < 8) {
+    //   setPasswordError("Must be at least 8 characters.");
+    // } else {
+    //   setPasswordError(""); // Reset the error message if the password is valid
+     navigation.navigate("Home");
+    // }
   };
 
   const { height } = useWindowDimensions();
@@ -46,44 +50,72 @@ function SignupScreen({ navigation }) {
 
         <Text>FirstName</Text>
         <CustomInput
-          placeholder="First name"
-          value={Fname}
-          setValue={setFirstName}
+          name="firstname"
+          control={control}
+          rules={{required: 'First name is required'}}
         />
 
         <Text>LastName</Text>
         <CustomInput
+          name="lastname"
+          control={control}
           placeholder="Last name"
-          value={Lname}
-          setValue={setLastName}
+          rules={{required: 'Last name is required'}}
         />
 
         <Text>Email</Text>
         <CustomInput
-          placeholder="Enter your email"
-          value={Email}
-          setValue={setEmail}
+          name="email"
+          control={control}
+          placeholder="Email"
+          rules={{pattern: {value: EMAIL_REGEX, message: 'Email is invalid'}, required: 'Email is required'}}
         />
 
         <Text>UserName</Text>
         <CustomInput
+          name="username"
+          control={control}
           placeholder="Username"
-          value={Uname}
-          setValue={setUsername}
+          rules={{
+            required: 'Username is required', 
+            minLength: {
+              value: 3, 
+              message: 'Username should be at least 6 characters long',
+            },
+            
+            maxLength: {
+              value: 24, 
+              message: 'Username should be max 24 characters only',
+            },
+            
+ 
+        }}
         />
 
         <Text>Password</Text>
         <CustomInput
+          name="password"
+          control={control}
           placeholder="Password"
-          value={password}
-          setValue={setPassword}
-          secureTextEntry={true}
+          secureTextEntry
+          rules={{
+            required: 'Password is required', 
+            minLength: {
+              value: 8, 
+              message: 'Password should be at least 6 characters long',
+            },
+            maxLength: {
+              value: 16, 
+              message: 'Password should be max of 18 characters only',
+            },
+          
+        }}
         />
-        {passwordError ? (
+        {/* {passwordError ? (
           <Text style={styles.errorText}>{passwordError}</Text>
-        ) : null}
+        ) : null} */}
 
-        <CustomButton text="Sign Up" onPress={handleSignup} />
+        <CustomButton text="Sign Up" onPress={handleSubmit(handleSignup)} />
         <Text style={styles.text}>OR</Text>
 
         <CustomButton

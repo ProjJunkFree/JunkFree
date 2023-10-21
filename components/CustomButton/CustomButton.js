@@ -40,7 +40,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#04AF70',
         shadowColor: 'black',
         shadowOffset: {width:2, height: 4},
-        shadowOpacity: 0.3, 
+        shadowOpacity: 0.2, 
+    },
+
+    container_SECONDARY: {
+        backgroundColor: 'white',
+        borderColor: 'grey',
+        borderWidth: 2,
+        shadowColor: 'black',
+        shadowOffset: {width:2, height: 4},
+        shadowOpacity: 0.1, 
     },
 
     container_TERTIARY: {
@@ -52,6 +61,10 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 15,
 
+    },
+
+    text_SECONDARY: {
+        color: 'grey',
     },
 
     text_TERTIARY: {
