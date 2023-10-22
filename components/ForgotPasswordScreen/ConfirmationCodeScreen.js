@@ -13,9 +13,9 @@ const ConfirmationCodeScreen = ({navigation}) => {
         console.warn('onConfirmPressed');      
     };
 
-    const onSignInPressed = () => {
-        navigation.navigate("Signup");
-        console.warn('onSignInPressed');
+    const onLoginPressed = () => {
+        navigation.navigate("Login");
+        console.warn('onLoginPressed');
     };
 
     const onResendPressed = () => {
@@ -44,8 +44,8 @@ const ConfirmationCodeScreen = ({navigation}) => {
             />
 
             <CustomButton
-                text="Back to Sign In"
-                onPress={onSignInPressed}
+                text="Back to Login"
+                onPress={onLoginPressed}
                 type="TERTIARY"
             />
         </View>  
