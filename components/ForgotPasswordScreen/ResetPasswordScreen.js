@@ -10,12 +10,13 @@ const ResetPasswordScreen = ({navigation}) => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const onConfirmPressed = () => {
-        console.warn('onSendPressed');      
+        navigation.navigate("Login");
+        console.warn('Password Reset Succefully');      
     };
 
-    const onSignInPressed = () => {
-        navigation.navigate("Signup");
-        console.warn('onSignInPressed');
+    const onLoginPressed = () => {
+        navigation.navigate("Login");
+        console.warn('onLoginPressed');
     };
 
 
@@ -36,7 +37,7 @@ const ResetPasswordScreen = ({navigation}) => {
             <CustomInput
                 name="newpassword"
                 control={control}
-                placeholder="Repeat passwprd"
+                placeholder="Repeat password"
                 secureTextEntry
                 rules={{required: 'Password is required'}}
             />
@@ -46,8 +47,8 @@ const ResetPasswordScreen = ({navigation}) => {
  
 
             <CustomButton
-                text="Back to Sign In"
-                onPress={onSignInPressed}
+                text="Back to Login"
+                onPress={onLoginPressed}
                 type="TERTIARY"
             />
         </View>  
