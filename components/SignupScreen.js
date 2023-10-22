@@ -26,6 +26,7 @@ function SignupScreen({ navigation }) {
   // const {passwordError, setPasswordError} = useForm();
 
   const handleSignup = () => {
+    console.warn("Signed is Successfully.");
     // if (password.length < 8) {
     //   setPasswordError("Must be at least 8 characters.");
     // } else {
@@ -37,7 +38,13 @@ function SignupScreen({ navigation }) {
   const { height } = useWindowDimensions();
 
   const onSignInGoogle = () => {
+    console.warn("Your Google account has been Signed in.");
     navigation.navigate("Home");
+  };
+
+  const onLoginPressed = () => {
+    navigation.navigate("Login");
+    console.warn("onLogin");
   };
 
   return (
@@ -51,6 +58,7 @@ function SignupScreen({ navigation }) {
         <CustomInput
           name="firstname"
           control={control}
+          placeholder="First name"
           rules={{ required: "First name is required" }}
         />
 
@@ -68,7 +76,7 @@ function SignupScreen({ navigation }) {
           control={control}
           placeholder="Email"
           rules={{
-            pattern: { value: EMAIL_REGEX, message: "Email is invalid" },
+            pattern: { value: EMAIL_REGEX, message: "Invalid Email" },
             required: "Email is required",
           }}
         />
@@ -81,7 +89,7 @@ function SignupScreen({ navigation }) {
           rules={{
             required: "Username is required",
             minLength: {
-              value: 3,
+              value: 6,
               message: "Username should be at least 6 characters long",
             },
 
@@ -102,7 +110,7 @@ function SignupScreen({ navigation }) {
             required: "Password is required",
             minLength: {
               value: 8,
-              message: "Password should be at least 6 characters long",
+              message: "Password should be at least 8 characters long",
             },
             maxLength: {
               value: 16,
@@ -114,7 +122,8 @@ function SignupScreen({ navigation }) {
           <Text style={styles.errorText}>{passwordError}</Text>
         ) : null} */}
 
-        <CustomButton text="Sign Up" onPress={handleSubmit(handleSignup)} />
+        <CustomButton text="Sign Up" 
+        onPress={handleSubmit(handleSignup)} />
         <Text style={styles.text}>OR</Text>
 
         <CustomButton
@@ -122,6 +131,13 @@ function SignupScreen({ navigation }) {
           onPress={onSignInGoogle}
           bgColor="white"
           fgColor="black"
+        />
+
+        <CustomButton
+          text="Already have an account? Login"
+          title="Login"
+          onPress={onLoginPressed}
+          type="TERTIARY"
         />
       </View>
     </ScrollView>
