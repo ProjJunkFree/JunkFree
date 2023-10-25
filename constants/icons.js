@@ -15,8 +15,14 @@ import filterOutline from "../assets/icons/filter_outline.png";
 import filterApplied from "../assets/icons/filterHome.png";
 import commentOutline from "../assets/icons/comment_outline.png";
 import shareOutline from "../assets/icons/share_outline.png";
+import logOut from "../assets/icons/logout.png";
+import lockedIcon from "../assets/icons/locked.png";
+import setNotif from "../assets/icons/setting_notif.png";
 export default {
   filterOutline,
+  logOut,
+  lockedIcon,
+  setNotif,
   filterApplied,
   heart,
   menu,

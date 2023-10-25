@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Button, Image, StyleSheet, TextInput } from "react-native";
+import icons from "../constants/icons";
+
+// Nara ang icons boss
 
 const ProfileScreen = ({ navigation }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -28,6 +31,10 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      // Ibalhin lang ning images boss
+      <Image source={icons.logOut} />
+      <Image source={icons.setNotif} />
+      <Image source={icons.lockedIcon} />
       <View style={styles.imageContainer}>
         <Image
           source={require("../assets/images/junkfree_circle.png")}
@@ -35,7 +42,6 @@ const ProfileScreen = ({ navigation }) => {
         />
       </View>
       <Text style={styles.profileName}>Junk Free</Text>
-
       <View style={styles.detailsContainer}>
         <View style={styles.detailItem}>
           <Text style={styles.detailLabel}>Name</Text>
@@ -94,7 +100,6 @@ const ProfileScreen = ({ navigation }) => {
           )}
         </View>
       </View>
-
       {isEditing && (
         <View style={styles.saveContainer}>
           <Button title="Save" onPress={handleSave} />
