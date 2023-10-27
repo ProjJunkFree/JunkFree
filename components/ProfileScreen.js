@@ -10,30 +10,44 @@ function ProfileScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Touc style={styles.imageContainer}>
+      <TouchableOpacity style={styles.imageContainer}>
         <Image
           source={require("../assets/images/junkfree_circle.png")}
           style={styles.profileImage}
         />
-      </Touc>
+      </TouchableOpacity>
       <Text style={styles.profileName}>Junk Free</Text>
-      <Text style={styles.memberSince}>Member since 2023</Text>
-
-      <View style={styles.detailsContainer}>
-        <View style={styles.detailItem}>
-          <Image source={icons.lockedIcon} style={styles.lockicon} />
-          <Text style={styles.detailLabel}>Privacy & Settings</Text>
-        </View>
-        <View style={styles.detailItem}>
-          <Image source={icons.setNotif} style={styles.notificon} />
-          <Text style={styles.detailLabel}>Notification</Text>
-        </View>
+      <View>
+        <Text style={styles.memberSince}>Member since 2023</Text>
       </View>
 
-      <View style={styles.logoutContainer}>
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Image source={icons.logOut} style={styles.logOutIcon} />
-          <Text style={styles.logoutText}>Logout</Text>
+      <View style={styles.detailsContainer}>
+        <TouchableOpacity style={styles.detailItem}>
+          <View style={styles.iconImageContainer}>
+            <Image source={icons.lockedIcon} style={styles.lockicon} />
+          </View>
+          <View style={styles.wrapTextContainer}>
+            <Text style={styles.detailLabel}>Privacy & Settings</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.detailItem}>
+          <View style={styles.iconImageContainer}>
+            <Image source={icons.setNotif} style={styles.notificon} />
+          </View>
+
+          <View style={styles.wrapTextContainer}>
+            <Text style={styles.detailLabel}>Notification</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.logoutMainContainer}>
+        <TouchableOpacity style={styles.logoutContainer}>
+          <View style={styles.logoutButton} onPress={handleLogout}>
+            <Image source={icons.logOut} style={styles.logOutIcon} />
+          </View>
+          <View>
+            <Text style={styles.logoutText}>Logout</Text>
+          </View>
         </TouchableOpacity>
       </View>
     </View>
@@ -47,6 +61,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     padding: 20,
   },
+
+  wrapTextContainer: {
+    paddingRight: 60,
+    textAlign: "center",
+    width: "80%",
+  },
   imageContainer: {
     alignItems: "center",
     backgroundColor: COLORS.junkFree,
@@ -57,64 +77,78 @@ const styles = StyleSheet.create({
     width: 130,
     height: 130,
   },
+
   profileName: {
     fontSize: 25,
     marginTop: 5,
   },
   memberSince: {
-    color: "green",
+    color: COLORS.junkFree,
     marginTop: 5,
     fontSize: 15,
+  },
+
+  logoutMainContainer: {
+    marginRight: 200,
   },
   detailsContainer: {
     width: "100%",
     marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconImageContainer: {
+    backgroundColor: COLORS.opacityGreen,
+    borderRadius: SIZES.xxLarge,
+    padding: 5,
   },
   detailItem: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 50,
+    justifyContent: "space-between",
+    marginBottom: 30,
+    gap: 15,
+    paddingHorizontal: 10,
+    width: "80%",
   },
   detailLabel: {
     fontWeight: "bold",
-    fontSize: 25,
-    alignItems: "center",
-    textAlign: "left",
+    fontSize: 15,
   },
   lockicon: {
-    width: 50,
-    height: 50,
-    marginStart: -90,
-    marginRight: 30,
+    width: 35,
+    height: 35,
   },
   notificon: {
-    width: 50,
-    height: 50,
-    marginStart: -160,
-    marginRight: 30,
+    width: 35,
+    height: 35,
   },
   detailValue: {
     fontSize: 25,
   },
   logoutContainer: {
-    marginLeft: -250,
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: COLORS.opacityGreen,
+    borderRadius: SIZES.medium,
+    paddingVertical: 8,
+    paddingHorizontal: SIZES.small,
   },
   logoutButton: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "blue",
-    borderRadius: 9,
+
+    gap: 10,
   },
   logOutIcon: {
     width: 25,
     height: 25,
     marginRight: 5,
-    tintColor: "white",
   },
   logoutText: {
-    color: "white",
-    fontSize: 18,
+    color: COLORS.textColor,
+    fontSize: 14,
+    fontWeight: "bold",
   },
 });
 
