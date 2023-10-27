@@ -1,118 +1,44 @@
-import React, { useState } from "react";
-import { View, Text, Button, Image, StyleSheet, TextInput } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import icons from "../constants/icons";
+import { COLORS, images, SIZES } from "../constants";
 
-// Nara ang icons boss
-
-const ProfileScreen = ({ navigation }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useState({
-    name: "Bossing Terec",
-    email: "Metchryl@gmail.com",
-    bio: "Kong di ka namo di sad kos imo",
-    location: "diha ra unahan",
-  });
-
+function ProfileScreen({ navigation }) {
   const handleLogout = () => {
-    // Implement logout logic here
-    // Navigate back to the Welcome screen or the authentication flow
     navigation.navigate("Welcome");
-  };
-
-  const handleEdit = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleSave = () => {
-    setIsEditing(false);
-    // Save the edited data
-    // You can update the user object here
   };
 
   return (
     <View style={styles.container}>
-      // Ibalhin lang ning images boss
-      <Image source={icons.logOut} />
-      <Image source={icons.setNotif} />
-      <Image source={icons.lockedIcon} />
-      <View style={styles.imageContainer}>
+      <Touc style={styles.imageContainer}>
         <Image
           source={require("../assets/images/junkfree_circle.png")}
           style={styles.profileImage}
         />
-      </View>
+      </Touc>
       <Text style={styles.profileName}>Junk Free</Text>
+      <Text style={styles.memberSince}>Member since 2023</Text>
+
       <View style={styles.detailsContainer}>
         <View style={styles.detailItem}>
-          <Text style={styles.detailLabel}>Name</Text>
-          {isEditing ? (
-            <TextInput
-              style={styles.editableText}
-              value={user.name}
-              placeholder="Enter your name"
-              onChangeText={(text) => setUser({ ...user, name: text })}
-              placeholderTextColor="#aaa"
-            />
-          ) : (
-            <Text style={styles.detailValue}>{user.name}</Text>
-          )}
+          <Image source={icons.lockedIcon} style={styles.lockicon} />
+          <Text style={styles.detailLabel}>Privacy & Settings</Text>
         </View>
         <View style={styles.detailItem}>
-          <Text style={styles.detailLabel}>Email</Text>
-          {isEditing ? (
-            <TextInput
-              style={styles.editableText}
-              value={user.email}
-              placeholder="Enter your email"
-              onChangeText={(text) => setUser({ ...user, email: text })}
-              placeholderTextColor="#aaa"
-            />
-          ) : (
-            <Text style={styles.detailValue}>{user.email}</Text>
-          )}
-        </View>
-        <View style={styles.detailItem}>
-          <Text style={styles.detailLabel}>Bio</Text>
-          {isEditing ? (
-            <TextInput
-              style={styles.editableText}
-              value={user.bio}
-              placeholder="Enter your bio"
-              onChangeText={(text) => setUser({ ...user, bio: text })}
-              placeholderTextColor="#aaa"
-            />
-          ) : (
-            <Text style={styles.detailValue}>{user.bio}</Text>
-          )}
-        </View>
-        <View style={styles.detailItem}>
-          <Text style={styles.detailLabel}>Location</Text>
-          {isEditing ? (
-            <TextInput
-              style={styles.editableText}
-              value={user.location}
-              placeholder="Enter your location"
-              onChangeText={(text) => setUser({ ...user, location: text })}
-              placeholderTextColor="#aaa"
-            />
-          ) : (
-            <Text style={styles.detailValue}>{user.location}</Text>
-          )}
+          <Image source={icons.setNotif} style={styles.notificon} />
+          <Text style={styles.detailLabel}>Notification</Text>
         </View>
       </View>
-      {isEditing && (
-        <View style={styles.saveContainer}>
-          <Button title="Save" onPress={handleSave} />
-        </View>
-      )}
-      {!isEditing && (
-        <View style={styles.logoutContainer}>
-          <Button title="Logout" onPress={handleLogout} />
-        </View>
-      )}
+
+      <View style={styles.logoutContainer}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Image source={icons.logOut} style={styles.logOutIcon} />
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -120,57 +46,75 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     padding: 20,
-    backgroundColor: "#f2f2f2",
   },
   imageContainer: {
     alignItems: "center",
-    marginBottom: 20,
+    backgroundColor: COLORS.junkFree,
+    borderRadius: 100,
+    padding: 3,
   },
   profileImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    borderWidth: 2,
-    borderColor: "#009688",
+    width: 130,
+    height: 130,
   },
   profileName: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginTop: 10,
-    color: "#009688",
+    fontSize: 25,
+    marginTop: 5,
+  },
+  memberSince: {
+    color: "green",
+    marginTop: 5,
+    fontSize: 15,
   },
   detailsContainer: {
     width: "100%",
-    marginTop: 20,
+    marginTop: 30,
   },
   detailItem: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 50,
   },
   detailLabel: {
     fontWeight: "bold",
-    fontSize: 18,
-    color: "#009688",
+    fontSize: 25,
+    alignItems: "center",
+    textAlign: "left",
+  },
+  lockicon: {
+    width: 50,
+    height: 50,
+    marginStart: -90,
+    marginRight: 30,
+  },
+  notificon: {
+    width: 50,
+    height: 50,
+    marginStart: -160,
+    marginRight: 30,
   },
   detailValue: {
-    fontSize: 18,
-    width: "60%",
-  },
-  editableText: {
-    fontSize: 18,
-    width: "60%",
-    borderColor: "#009688",
-    borderBottomWidth: 1,
-    marginBottom: 10,
-    paddingBottom: 2,
-    color: "#333",
-  },
-  saveContainer: {
-    marginBottom: 20,
+    fontSize: 25,
   },
   logoutContainer: {
-    marginTop: "auto",
+    marginLeft: -250,
+  },
+  logoutButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "blue",
+    borderRadius: 9,
+  },
+  logOutIcon: {
+    width: 25,
+    height: 25,
+    marginRight: 5,
+    tintColor: "white",
+  },
+  logoutText: {
+    color: "white",
+    fontSize: 18,
   },
 });
 
