@@ -11,6 +11,7 @@ const COLORS = {
   lightWhite: "#FAFAFC",
   red: "#ED1C24",
   backgroundColor: "#F3F2F7",
+  opacityGreen: "#DAF3EA",
 };
 
 const FONT = {
